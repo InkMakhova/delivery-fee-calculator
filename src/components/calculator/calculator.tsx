@@ -182,6 +182,7 @@ function Calculator():JSX.Element {
             </label>
             <div className="col-sm-10" style={{marginRight: '1em'}}>
               <Flatpickr
+                className="form-control"
                 data-enable-time
                 onChange={(evt: Date[]) => {
                   // User interacts with local time, so here time is converted to UTC
