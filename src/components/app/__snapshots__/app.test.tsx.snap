@@ -123,12 +123,6 @@ exports[`should render App correctly 1`] = `
         >
           Calculate delivery price
         </button>
-        <button
-          style="background-color: transparent; color: blue; text-decoration: underline;"
-          type="reset"
-        >
-          Reset form
-        </button>
       </fieldset>
     </form>
     <p

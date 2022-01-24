@@ -1,4 +1,4 @@
-import React, {ChangeEvent, FocusEvent, useState} from 'react';
+import React, { ChangeEvent, FocusEvent, useState } from 'react';
 import dayjs from 'dayjs';
 import 'flatpickr/dist/themes/material_blue.css';
 import Flatpickr from 'react-flatpickr';
@@ -19,7 +19,7 @@ function Calculator():JSX.Element {
   const [isNumberOfItemsError, setIsNumberOfItemsError] = useState(false);
 
   const validateCartValue = (evt: ChangeEvent<HTMLInputElement> | FocusEvent<HTMLInputElement>) => {
-    // using RegExp for validation of cart value because Firefox doesn't support
+    // using RegExp for validation of cart value (to avoid input of letters in Firefox)
     const regex = new RegExp(/^[0-9]*\.?[0-9]*$/);
 
     setIsCartValueError(false);
@@ -35,6 +35,7 @@ function Calculator():JSX.Element {
     setCartValue(evt.target.value);
   }
 
+  //for validation distance and number of items fields
   const validateIntegerInput = (
     evt: ChangeEvent<HTMLInputElement> | FocusEvent<HTMLInputElement>,
     setState:  React.Dispatch<React.SetStateAction<string>>,
@@ -117,7 +118,8 @@ function Calculator():JSX.Element {
                 id="distance"
                 placeholder="Delivery distance"
                 required
-                onChange={(evt) => validateIntegerInput(evt, setDistance, setIsDistanceError)}
+                onChange={(evt) =>
+                  validateIntegerInput(evt, setDistance, setIsDistanceError)}
                 onBlur={(evt: FocusEvent<HTMLInputElement>) => {
                   validateIntegerInput(evt, setDistance, setIsDistanceError);
                   if (!isDistanceError && evt.target.value !== '') {
@@ -201,7 +203,7 @@ function Calculator():JSX.Element {
             style={{marginBottom: '1em', marginTop: '1em', marginRight: '1em'}}
             onClick={(evt) => {
               evt.preventDefault();
-              /*here I convert € to cents to avoid precision errors*/
+              /*convert € to cents to avoid precision errors*/
               const cartValueParam = Math.round(Number(cartValue) * 100);
               const distanceParam = Number(distance);
               const numberOfItemsParam = Number(numberOfItems);
@@ -210,16 +212,6 @@ function Calculator():JSX.Element {
               )}}
           >
             Calculate delivery price
-          </button>
-          <button
-            type="reset"
-            style={{
-              border: 'none',
-              backgroundColor: 'transparent',
-              color: 'blue',
-              textDecoration: 'underline'
-            }}
-          >Reset form
           </button>
         </fieldset>
       </form>

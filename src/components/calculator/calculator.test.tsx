@@ -10,8 +10,7 @@ describe('Component: Calculator', () => {
     expect(screen.getByText(/Delivery distance/i)).toBeInTheDocument();
     expect(screen.getByText(/Number of items/i)).toBeInTheDocument();
     expect(screen.getByText(/Order time/i)).toBeInTheDocument();
-    expect(screen.getAllByRole('button')
-      .find((element) => element.textContent === 'Calculate delivery price')).toBeInTheDocument();
+    expect(screen.getByRole('button')).toBeInTheDocument();
     expect(screen.getByText(/Delivery price:/i)).toBeInTheDocument();
   });
 });
