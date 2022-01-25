@@ -1,9 +1,9 @@
 import React from 'react';
-import Calculator from '../calculator/calculator';
+import DeliveryCalculator from '../calculator/delivery-calculator';
 
 function App() {
   return (
-    <Calculator />
+    <DeliveryCalculator />
   );
 }
 

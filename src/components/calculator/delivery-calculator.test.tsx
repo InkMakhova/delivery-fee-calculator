@@ -1,9 +1,9 @@
 import { render, screen } from '@testing-library/react';
-import Calculator from './calculator';
+import DeliveryCalculator from './delivery-calculator';
 
-describe('Component: Calculator', () => {
+describe('Component: DeliveryCalculator', () => {
   it('should render component correctly', () => {
-    render(<Calculator />);
+    render(<DeliveryCalculator />);
 
     expect(screen.getByText(/Delivery fee calculator/i)).toBeInTheDocument();
     expect(screen.getByText(/Cart value/i)).toBeInTheDocument();

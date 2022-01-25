@@ -7,7 +7,7 @@ import utc from 'dayjs/plugin/utc'
 
 dayjs.extend(utc);
 
-function Calculator():JSX.Element {
+function DeliveryCalculator():JSX.Element {
   const [cartValue, setCartValue] = useState('');
   const [distance, setDistance] = useState('');
   const [numberOfItems, setNumberOfItems] = useState('');
@@ -224,4 +224,4 @@ function Calculator():JSX.Element {
   );
 }
 
-export default Calculator;
+export default DeliveryCalculator;
