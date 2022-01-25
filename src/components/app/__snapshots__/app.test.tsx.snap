@@ -108,7 +108,7 @@ exports[`should render App correctly 1`] = `
             style="margin-right: 1em;"
           >
             <input
-              class="flatpickr-input"
+              class="form-control flatpickr-input"
               data-enable-time="true"
               readonly="readonly"
               type="text"

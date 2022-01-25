@@ -28,7 +28,7 @@ const FRIDAY_RUSH_MULTIPLY = 1.1;
 export const isDeliveryFree = (cartValue: number) => cartValue >= FREE_DELIVERY_CART_VALUE;
 
 export const calculateCartValueSurcharge = (cartValue: number) =>
-  (cartValue < MIN_DELIVERY_CART_VALUE && cartValue > 0) ? (MIN_DELIVERY_CART_VALUE - cartValue) : 0;
+  (cartValue < MIN_DELIVERY_CART_VALUE && cartValue >= 0) ? (MIN_DELIVERY_CART_VALUE - cartValue) : 0;
 
 export const calculateDistanceFee = (distanceValue: number) => {
   const extraDistance = distanceValue - MIN_DISTANCE;

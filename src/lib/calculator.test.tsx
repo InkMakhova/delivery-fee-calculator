@@ -47,8 +47,8 @@ describe('Function: calculateCartValueSurcharge', () => {
   it('should return 0 when cart value -860 cents', () => {
     expect(calculateCartValueSurcharge(-860)).toBe(0);
   });
-  it('should return 0 when cart value 0', () => {
-    expect(calculateCartValueSurcharge(0)).toBe(0);
+  it('should return 1000 when cart value 0', () => {
+    expect(calculateCartValueSurcharge(0)).toBe(1000);
   });
 });
 
