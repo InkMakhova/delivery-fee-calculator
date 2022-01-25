@@ -1,4 +1,8 @@
 # Delivery Fee Calculator
+Demo
+<a href="https://delivery-calculator-makhova.netlify.app/">
+    https://delivery-calculator-makhova.netlify.app
+</a>
 
 Delivery fee calculator is an application that calculates the shipping cost when a customer is already ready 
 with the shopping cart, and we'd like to show him how much the shipping will cost.
