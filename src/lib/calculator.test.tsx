@@ -13,10 +13,10 @@ dayjs.extend(utc);
 
 const mockDay = {
   notFriday: dayjs.utc('2022-01-20T17:59:59.653Z'),
-  fridayBeforeRush: dayjs.utc('2022-01-21T14:59:00.653Z'),
-  fridayRushStart: dayjs.utc('2022-01-21T15:00:00.653Z'),
-  fridayRushEnd: dayjs.utc('2022-01-21T19:00:00.653Z'),
-  fridayAfterRush: dayjs.utc('2022-01-21T19:01:00.653Z'),
+  fridayBeforeRush: dayjs.utc('2022-01-21T14:59:59.653Z'),
+  fridayRushStart: dayjs.utc('2022-01-21T15:00:00.000Z'),
+  fridayRushEnd: dayjs.utc('2022-01-21T18:59:59.653Z'),
+  fridayAfterRush: dayjs.utc('2022-01-21T19:00:00.000Z'),
 }
 
 describe('Function: isDeliveryFree', () => {
@@ -171,36 +171,37 @@ describe('Function: calculateDeliveryPrice', () => {
     expect(calculateDeliveryPrice(500, 1501, 10, mockDay.notFriday)).toBe(12);
   });
   it('should return 12 when cart value is 500 cents, distance is 1501, number of items are 10, date 21.01.2022 14:59', () => {
-    expect(calculateDeliveryPrice(500, 1501, 10, mockDay.fridayAfterRush)).toBe(12);
+    expect(calculateDeliveryPrice(500, 1501, 10, mockDay.fridayBeforeRush)).toBe(12);
   });
   it('should return 13.2 when cart value is 500 cents, distance is 1501, number of items are 10, date 21.01.2022 15:00', () => {
     expect(calculateDeliveryPrice(500, 1501, 10, mockDay.fridayRushStart)).toBe(13.2);
   });
-  it('should return 13.2 when cart value is 500 cents, distance is 1501, number of items are 10, date 21.01.2022 19:00', () => {
+  it('should return 13.2 when cart value is 500 cents, distance is 1501, number of items are 10, date 21.01.2022 18:59', () => {
     expect(calculateDeliveryPrice(500, 1501, 10, mockDay.fridayRushEnd)).toBe(13.2);
   });
-  it('should return 15 when cart value is 150 cents, distance is 1501, number of items are 10, date 21.01.2022 19:00', () => {
+  it('should return 15 when cart value is 150 cents, distance is 1501, number of items are 10, date 21.01.2022 18:59', () => {
     expect(calculateDeliveryPrice(150, 1501, 10, mockDay.fridayRushEnd)).toBe(15);
   });
-  it('should return 11 when cart value is 600 cents, distance is 1499, number of items are 10, date 21.01.2022 19:00', () => {
+  it('should return 11 when cart value is 600 cents, distance is 1499, number of items are 10, date 21.01.2022 18:59', () => {
     expect(calculateDeliveryPrice(600, 1499, 10, mockDay.fridayRushEnd)).toBe(11);
   });
-  it('should return 5 when cart value is 1000 cents, distance is 1499, number of items are 8, date 21.01.2022 19:01', () => {
+  it('should return 5 when cart value is 1000 cents, distance is 1499, number of items are 8, date 21.01.2022 19:00', () => {
     expect(calculateDeliveryPrice(1000, 1499, 8, mockDay.fridayAfterRush)).toBe(5);
   });
-  it('should return 14 when cart value is 1000 cents, distance is 5501, number of items are 8, date 21.01.2022 19:01', () => {
+  it('should return 14 when cart value is 1000 cents, distance is 5501, number of items are 8, date 21.01.2022 19:00', () => {
     expect(calculateDeliveryPrice(1000, 5501, 8, mockDay.fridayAfterRush)).toBe(14);
   });
-  it('should return 14.5 when cart value is 1130 cents, distance is 5501, number of items are 8.8, date 21.01.2022 19:01', () => {
+  it('should return 14.5 when cart value is 1130 cents, distance is 5501, number of items are 8.8, date 21.01.2022 19:00', () => {
     expect(calculateDeliveryPrice(1130, 5501, 8.8, mockDay.fridayAfterRush)).toBe(14.5);
   });
-  it('should return 0 when cart value is 1130 cents, distance is 5501, number of items are 0, date 21.01.2022 19:01', () => {
+  it('should return 0 when cart value is 1130 cents, distance is 5501, number of items are 0, date 21.01.2022 19:00', () => {
     expect(calculateDeliveryPrice(1130, 5501, 0, mockDay.fridayAfterRush)).toBe(0);
   });
-  it('should return 0 when cart value is -1130 cents, distance is 5501, number of items are -2, date 21.01.2022 19:01', () => {
+  it('should return 0 when cart value is -1130 cents, distance is 5501, number of items are -2, date 21.01.2022 19:00', () => {
     expect(calculateDeliveryPrice(-1130, 5501, -2, mockDay.fridayAfterRush)).toBe(0);
   });
-  it('should return 11.72 when cart value is 535 cents, distance is 1400, number of items are 10, date 21.01.2022 19:01', () => {
+  it('should return 11.72 when cart value is 535 cents, distance is 1400, number of items are 10, date 21.01.2022 18:59', () => {
+    // 10.65 * 1.1 = 11.715, ensure that it will be rounded to 11.72
     expect(calculateDeliveryPrice(535, 1400, 10, mockDay.fridayRushEnd)).toBe(11.72);
   });
 });

@@ -1,14 +1,10 @@
 # Delivery Fee Calculator
-Demo
-<a href="https://delivery-calculator-makhova.netlify.app/">
-    https://delivery-calculator-makhova.netlify.app
-</a>
 
-Delivery fee calculator is an application that calculates the shipping cost when a customer is already ready 
-with the shopping cart, and we'd like to show him how much the shipping will cost.
+Delivery fee calculator is an application that calculates the shipping cost based on the cart value, the number of items in the cart, the time of the order, and the delivery distance.
 
-The delivery price depends on the cart value, the number of items in the cart, the time of the order, 
-and the delivery distance.
+[Demo](https://delivery-calculator-makhova.netlify.app)
+
+![screenshot](./screenshot.png)
 
 ## Specification
 
@@ -31,38 +27,40 @@ Even if the distance would be shorter than 500 meters, the minimum fee is always
  * During the Friday rush (3 - 7 PM UTC), the delivery fee (the total fee including possible surcharges) will 
 be multiplied by 1.1x. However, the fee still cannot be more than the max (15€).
 
-###### Remarks
+### Remarks
  * It's assumed that if the number of items in the cart is 0, then there is nothing to deliver, 
 then the delivery price will be 0€.
-
  * It's assumed that if the cart value is 0€ but the number of items is more than 0 
 (e.g. a promotion with 100% discount, free items), then the delivery price will be calculated according to 
 the rules above (the surcharge for cart value will be 10€. The customer must pay for shipping even if his 
 cart items are free).
-
- * It's assumed that a customer interacts with local time in the delivery form but time is converted
-into UTC for the Friday rush:
-   - Example 1: a customer from Helsinki chooses delivery time on Friday 21.01.2022 16:00 (local time).
-   It's 21.01.2022 14:00 in UTC. Therefore, it's not the Friday rush and coefficient 1.1 will not be applied.
-   - Example 2: a customer from Helsinki chooses delivery time on Friday 21.01.2022 21.00 (local time).
-   It's 21.01.2022 19:00 in UTC. Therefore, it's the last minute of the Friday rush and coefficient 1.1 
-   will be applied.
+ * The customer interacts with local time in the delivery form. The time is converted to UTC for the Friday rush calculation internally.
+ * Given Friday rush interval is considered as inclusive start and exclusive end.
    
-## Available Scripts
+## Usage
 
-In the project directory, you can run:
-### `npm start`
+### Install dependencies
 
-Runs the app in the development mode.
+```
+npm install
+```
+
+### Run in the development mode
+```
+npm start
+```
 Open http://localhost:3000 to view it in the browser.
 
-### `npm test`
+### Run tests
+```
+npm test
+```
 
-Launches the test runner in the interactive watch mode.
+### Build
+```
+npm run build
+```
 
-### `npm run build`
-
-Builds the app for production to the build folder.
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Creates an optimized production build.
 
 

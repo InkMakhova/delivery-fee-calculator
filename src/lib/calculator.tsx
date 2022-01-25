@@ -46,7 +46,7 @@ export const isFridayRush = (date: Dayjs) => {
   const timeTo = date.hour(19).minute(0);
 
   const isFriday = date.day() === FRIDAY;
-  const isRush = date.isSameOrAfter(timeFrom) && date.isSameOrBefore(timeTo);
+  const isRush = date.isSameOrAfter(timeFrom) && date.isBefore(timeTo);
 
   return isFriday && isRush;
 }
